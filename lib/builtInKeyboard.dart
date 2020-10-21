@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 class BuiltInKeyboard extends StatefulWidget {
   final String layoutType;
-  BuiltInKeyboard(this.layoutType);
+  final BoxDecoration decoration;
+  final TextEditingController controller;
+  BuiltInKeyboard({this.controller, this.layoutType, this.decoration});
   @override
   BuiltInKeyboardState createState() => BuiltInKeyboardState();
 }
@@ -13,29 +15,32 @@ class BuiltInKeyboard extends StatefulWidget {
 class BuiltInKeyboardState extends State<BuiltInKeyboard> {
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      padding: EdgeInsets.only(left: 5, right: 5),
-      crossAxisCount: 10,
-      crossAxisSpacing: 3,
-      mainAxisSpacing: 10,
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 5,
+      runSpacing: 5,
       children: layout(widget.layoutType),
     );
   }
 
   Widget buttonLetter(String letter) {
-    return ButtonTheme(
-      height: 100,
-      child: RaisedButton(
-          onPressed: () => letter,
-          child: Text(letter,
-              style: TextStyle(fontSize: 20, color: Colors.black))),
+    return InkWell(
+      onTap: () => widget.controller.text += letter,
+      child: Container(
+          decoration: widget.decoration,
+          height: 30,
+          width: 30,
+          child: Center(
+            child: Text(letter,
+                style: TextStyle(fontSize: 25, color: Colors.black)),
+          )),
     );
   }
 
   List<Widget> layout(String layoutType) {
     List<String> letters = [];
     if (layoutType == 'EN') {
-      letters = 'qwertyuiopasdfghjklzxcvbnm'.split("");
+      letters = 'QWERTYUIOPASDFGHJKLZXCVBNM'.split("");
     } else if (layoutType == 'FR') {
       letters = 'azertyuiopqsdfghjklmwxcvbn'.split("");
     }
@@ -44,7 +49,6 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
     letters.forEach((String letter) {
       keyboard.add(buttonLetter(letter));
     });
-    keyboard.add(buttonLetter('Done =>'));
     return keyboard;
   }
 }
