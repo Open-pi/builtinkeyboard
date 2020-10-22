@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class BuiltInKeyboard extends StatefulWidget {
   final String layoutType;
+  final TextStyle letterStyle;
   final BoxDecoration decoration;
   final TextEditingController controller;
   final double height;
@@ -13,10 +14,11 @@ class BuiltInKeyboard extends StatefulWidget {
   BuiltInKeyboard({
     this.controller,
     this.layoutType,
+    this.letterStyle = const TextStyle(fontSize: 25, color: Colors.black),
     this.decoration,
-    this.height = 46,
-    this.width = 35,
-    this.spacing = 8,
+    this.height = 46.0,
+    this.width = 35.0,
+    this.spacing = 8.0,
   });
   @override
   BuiltInKeyboardState createState() => BuiltInKeyboardState();
@@ -66,7 +68,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
         child: Center(
           child: Text(
             letter,
-            style: TextStyle(fontSize: 25, color: Colors.black),
+            style: widget.letterStyle,
           ),
         ),
       ),
