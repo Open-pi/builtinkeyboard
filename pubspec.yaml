@@ -1,7 +1,7 @@
 name: builtInKeyboard
-description: A new Flutter package project.
+description: A on board keyboard for your flutter App.
 version: 0.0.1
-author:
+author: Open Segmentation Systems
 homepage:
 
 environment:

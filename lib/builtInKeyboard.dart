@@ -40,7 +40,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           alignment: WrapAlignment.center,
           spacing: 5,
           runSpacing: 5,
-          children: keyboardLayout.sublist(19, 26),
+          children: keyboardLayout.sublist(19, 27),
         ),
       ],
     );
@@ -51,13 +51,28 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
       onTap: () => widget.controller.text += letter,
       child: Container(
         decoration: widget.decoration,
-        height: 30,
+        height: 45,
         width: 30,
         child: Center(
           child: Text(
             letter,
             style: TextStyle(fontSize: 25, color: Colors.black),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget backSpace() {
+    return InkWell(
+      onTap: () => widget.controller.text = widget.controller.text
+          .substring(0, widget.controller.text.length - 1),
+      child: Container(
+        decoration: widget.decoration,
+        height: 45,
+        width: 100,
+        child: Center(
+          child: Text('<backspace>'),
         ),
       ),
     );
@@ -77,6 +92,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
         buttonLetter(letter),
       );
     });
+    keyboard.add(backSpace());
     return keyboard;
   }
 }
