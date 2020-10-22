@@ -7,7 +7,15 @@ class BuiltInKeyboard extends StatefulWidget {
   final String layoutType;
   final BoxDecoration decoration;
   final TextEditingController controller;
-  BuiltInKeyboard({this.controller, this.layoutType, this.decoration});
+  final double height;
+  final double width;
+  BuiltInKeyboard({
+    this.controller,
+    this.layoutType,
+    this.decoration,
+    this.height = 46,
+    this.width = 35,
+  });
   @override
   BuiltInKeyboardState createState() => BuiltInKeyboardState();
 }
@@ -51,8 +59,8 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
       onTap: () => widget.controller.text += letter,
       child: Container(
         decoration: widget.decoration,
-        height: 30,
-        width: 30,
+        height: widget.height,
+        width: widget.width,
         child: Center(
           child: Text(
             letter,
