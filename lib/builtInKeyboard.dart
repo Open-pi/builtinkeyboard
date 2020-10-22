@@ -79,8 +79,12 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
 
   Widget backSpace() {
     return InkWell(
-      onTap: () => widget.controller.text = widget.controller.text
-          .substring(0, widget.controller.text.length - 1),
+      onTap: () {
+        if (widget.controller.text.isNotEmpty) {
+          return widget.controller.text = widget.controller.text
+              .substring(0, widget.controller.text.length - 1);
+        }
+      },
       child: Container(
         decoration: widget.decoration,
         height: widget.height,
