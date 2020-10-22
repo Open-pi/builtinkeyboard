@@ -83,10 +83,13 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           .substring(0, widget.controller.text.length - 1),
       child: Container(
         decoration: widget.decoration,
-        height: 45,
-        width: 100,
+        height: widget.height,
+        width: widget.width + 20,
         child: Center(
-          child: Text('<backspace>'),
+          child: Icon(
+            Icons.backspace_outlined,
+            size: 26,
+          ),
         ),
       ),
     );
