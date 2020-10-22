@@ -11,6 +11,7 @@ class BuiltInKeyboard extends StatefulWidget {
   final double height;
   final double width;
   final double spacing;
+  final bool enableBackSpace;
   BuiltInKeyboard({
     this.controller,
     this.layoutType,
@@ -19,6 +20,7 @@ class BuiltInKeyboard extends StatefulWidget {
     this.height = 46.0,
     this.width = 35.0,
     this.spacing = 8.0,
+    this.enableBackSpace = true,
   });
   @override
   BuiltInKeyboardState createState() => BuiltInKeyboardState();
@@ -52,7 +54,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           alignment: WrapAlignment.center,
           spacing: 5,
           runSpacing: 5,
-          children: keyboardLayout.sublist(19, 27),
+          children: keyboardLayout.sublist(19),
         ),
       ],
     );
@@ -104,7 +106,9 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
         buttonLetter(letter),
       );
     });
-    keyboard.add(backSpace());
+    if (widget.enableBackSpace) {
+      keyboard.add(backSpace());
+    }
     return keyboard;
   }
 }
