@@ -9,12 +9,14 @@ class BuiltInKeyboard extends StatefulWidget {
   final TextEditingController controller;
   final double height;
   final double width;
+  final double spacing;
   BuiltInKeyboard({
     this.controller,
     this.layoutType,
     this.decoration,
     this.height = 46,
     this.width = 35,
+    this.spacing = 8,
   });
   @override
   BuiltInKeyboardState createState() => BuiltInKeyboardState();
@@ -33,7 +35,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           children: keyboardLayout.sublist(0, 10),
         ),
         SizedBox(
-          height: 8,
+          height: widget.spacing,
         ),
         Wrap(
           alignment: WrapAlignment.center,
@@ -42,7 +44,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           children: keyboardLayout.sublist(10, 19),
         ),
         SizedBox(
-          height: 8,
+          height: widget.spacing,
         ),
         Wrap(
           alignment: WrapAlignment.center,
