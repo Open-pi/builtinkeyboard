@@ -18,6 +18,7 @@ class BuiltInKeyboard extends StatefulWidget {
   final bool enableBackSpace;
   final bool enableUppercaseAll;
   final bool enableLongPressUppercase;
+  final Icon backspaceIcon;
   BuiltInKeyboard({
     this.controller,
     this.layoutType,
@@ -33,6 +34,7 @@ class BuiltInKeyboard extends StatefulWidget {
     this.enableUppercaseAll = false,
     this.enableLongPressUppercase = false,
     this.enableSpacebar = false,
+    this.backspaceIcon = const Icon(Icons.backspace_outlined, size: 26),
   });
   @override
   BuiltInKeyboardState createState() => BuiltInKeyboardState();
@@ -170,10 +172,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
             }
           },
           child: Center(
-            child: Icon(
-              Icons.backspace_outlined,
-              size: 26,
-            ),
+            child: widget.backspaceIcon,
           ),
         ),
       ),
