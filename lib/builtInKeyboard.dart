@@ -14,6 +14,7 @@ class BuiltInKeyboard extends StatefulWidget {
   final double height;
   final double width;
   final double spacing;
+  final bool enableSpacebar;
   final bool enableBackSpace;
   final bool enableUppercaseAll;
   final bool enableLongPressUppercase;
@@ -31,6 +32,7 @@ class BuiltInKeyboard extends StatefulWidget {
     this.enableBackSpace = true,
     this.enableUppercaseAll = false,
     this.enableLongPressUppercase = false,
+    this.enableSpacebar = false,
   });
   @override
   BuiltInKeyboardState createState() => BuiltInKeyboardState();
@@ -66,6 +68,16 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           runSpacing: 5,
           children: keyboardLayout.sublist(19),
         ),
+        widget.enableSpacebar
+            ? Column(
+                children: [
+                  SizedBox(
+                    height: widget.spacing,
+                  ),
+                  spaceBar(),
+                ],
+              )
+            : SizedBox(),
       ],
     );
   }
@@ -96,6 +108,33 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           child: Center(
             child: Text(
               letter,
+              style: widget.letterStyle,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget spaceBar() {
+    return Container(
+      height: widget.height,
+      width: widget.width + 160,
+      child: Material(
+        type: MaterialType.button,
+        color: widget.color,
+        borderRadius: widget.borderRadius,
+        child: InkWell(
+          highlightColor: widget.highlightColor,
+          splashColor: widget.splashColor,
+          onTap: () {
+            widget.controller.text += ' ';
+            widget.controller.selection = TextSelection.fromPosition(
+                TextPosition(offset: widget.controller.text.length));
+          },
+          child: Center(
+            child: Text(
+              '_________',
               style: widget.letterStyle,
             ),
           ),
