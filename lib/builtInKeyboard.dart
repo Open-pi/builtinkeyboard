@@ -61,16 +61,22 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
   }
 
   Widget buttonLetter(String letter) {
-    return InkWell(
-      onTap: () => widget.controller.text += letter,
-      child: Container(
-        decoration: widget.decoration,
-        height: widget.height,
-        width: widget.width,
-        child: Center(
-          child: Text(
-            letter,
-            style: widget.letterStyle,
+    return Container(
+      height: widget.height,
+      width: widget.width,
+      child: Material(
+        type: MaterialType.button,
+        child: InkWell(
+          onTap: () {
+            widget.controller.text += letter;
+            widget.controller.selection = TextSelection.fromPosition(
+                TextPosition(offset: widget.controller.text.length));
+          },
+          child: Center(
+            child: Text(
+              letter,
+              style: widget.letterStyle,
+            ),
           ),
         ),
       ),
@@ -78,21 +84,23 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
   }
 
   Widget backSpace() {
-    return InkWell(
-      onTap: () {
-        if (widget.controller.text.isNotEmpty) {
-          return widget.controller.text = widget.controller.text
-              .substring(0, widget.controller.text.length - 1);
-        }
-      },
-      child: Container(
-        decoration: widget.decoration,
-        height: widget.height,
-        width: widget.width + 20,
-        child: Center(
-          child: Icon(
-            Icons.backspace_outlined,
-            size: 26,
+    return Container(
+      height: widget.height,
+      width: widget.width + 20,
+      child: Material(
+        type: MaterialType.button,
+        child: InkWell(
+          onTap: () {
+            if (widget.controller.text.isNotEmpty) {
+              widget.controller.text = widget.controller.text
+                  .substring(0, widget.controller.text.length - 1);
+            }
+          },
+          child: Center(
+            child: Icon(
+              Icons.backspace_outlined,
+              size: 26,
+            ),
           ),
         ),
       ),
