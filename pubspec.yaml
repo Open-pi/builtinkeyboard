@@ -2,7 +2,7 @@ name: built_in_keyboard
 description: A on board keyboard for your flutter App.
 version: 0.0.1
 author: Open Segmentation Systems
-homepage:
+homepage: https://github.com/Open-Segmentation-Systems/BuiltInKeyboard
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
