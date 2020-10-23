@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 class BuiltInKeyboard extends StatefulWidget {
   final String layoutType;
   final TextStyle letterStyle;
-  final BoxDecoration decoration;
+  final BorderRadius borderRadius;
+  final Color color;
+  final Color highlightColor;
+  final Color splashColor;
   final TextEditingController controller;
   final double height;
   final double width;
@@ -16,7 +19,10 @@ class BuiltInKeyboard extends StatefulWidget {
     this.controller,
     this.layoutType,
     this.letterStyle = const TextStyle(fontSize: 25, color: Colors.black),
-    this.decoration,
+    this.borderRadius,
+    this.color = Colors.deepOrange,
+    this.highlightColor,
+    this.splashColor,
     this.height = 46.0,
     this.width = 35.0,
     this.spacing = 8.0,
@@ -66,7 +72,11 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
       width: widget.width,
       child: Material(
         type: MaterialType.button,
+        color: widget.color,
+        borderRadius: widget.borderRadius,
         child: InkWell(
+          highlightColor: widget.highlightColor,
+          splashColor: widget.splashColor,
           onTap: () {
             widget.controller.text += letter;
             widget.controller.selection = TextSelection.fromPosition(
@@ -89,11 +99,24 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
       width: widget.width + 20,
       child: Material(
         type: MaterialType.button,
+        color: widget.color,
+        borderRadius: widget.borderRadius,
         child: InkWell(
+          highlightColor: widget.highlightColor,
+          splashColor: widget.splashColor,
           onTap: () {
             if (widget.controller.text.isNotEmpty) {
               widget.controller.text = widget.controller.text
                   .substring(0, widget.controller.text.length - 1);
+              widget.controller.selection = TextSelection.fromPosition(
+                  TextPosition(offset: widget.controller.text.length));
+            }
+          },
+          onLongPress: () {
+            if (widget.controller.text.isNotEmpty) {
+              widget.controller.text = '';
+              widget.controller.selection = TextSelection.fromPosition(
+                  TextPosition(offset: widget.controller.text.length));
             }
           },
           child: Center(
