@@ -4,38 +4,45 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BuiltInKeyboard extends StatefulWidget {
-	// layoutType of the keyboard
+  // layoutType of the keyboard
   final String layoutType;
-	// TextStyle of the letters in the keys (fontsize, fontface)
+
+  // TextStyle of the letters in the keys (fontsize, fontface)
   final TextStyle letterStyle;
-	// Border radius of the keys
+
+  // Border radius of the keys
   final BorderRadius borderRadius;
-	// Color of the keys
+
+  // Color of the keys
   final Color color;
-	// The color displayed when the key is pressed
+
+  // The color displayed when the key is pressed
   final Color highlightColor;
   final Color splashColor;
-	// The controller connected to the InputField
+
+  // The controller connected to the InputField
   final TextEditingController controller;
-	// height and width of each key
+
+  // height and width of each key
   final double height;
   final double width;
   final double spacing;
-	// the additional key that can be added to the keyboard
+
+  // the additional key that can be added to the keyboard
   final bool enableSpacebar;
   final bool enableBackSpace;
-	// Additional functionality for the keys
-	// Makes the keyboard uppercase
+
+  // Additional functionality for the keys
+  // Makes the keyboard uppercase
   final bool enableUppercaseAll;
-	// Long press to write uppercase letters 
+
+  // Long press to write uppercase letters
   final bool enableLongPressUppercase;
   final Icon backspaceIcon;
 
   BuiltInKeyboard({
-		@required
-    this.controller,
-		@required
-    this.layoutType,
+    @required this.controller,
+    @required this.layoutType,
     this.letterStyle = const TextStyle(fontSize: 25, color: Colors.black),
     this.borderRadius,
     this.color = Colors.deepOrange,
