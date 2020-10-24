@@ -73,7 +73,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
       children: [
         Wrap(
           alignment: WrapAlignment.center,
-          spacing: 5,
+          spacing: 6,
           runSpacing: 5,
           children: keyboardLayout.sublist(0, 10),
         ),
@@ -82,19 +82,36 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
         ),
         Wrap(
           alignment: WrapAlignment.center,
-          spacing: 5,
+          spacing: 6,
           runSpacing: 5,
           children: keyboardLayout.sublist(10, 19),
         ),
         SizedBox(
           height: widget.spacing,
         ),
-        Wrap(
-          alignment: WrapAlignment.center,
-          spacing: 5,
-          runSpacing: 5,
-          children: keyboardLayout.sublist(19),
-        ),
+        widget.enableBackSpace
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(width: (widget.width ?? width) + 24.3, height: 0.0),
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 6,
+                    runSpacing: 5,
+                    children: keyboardLayout.sublist(19),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4),
+                    child: backSpace(),
+                  ),
+                ],
+              )
+            : Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 6,
+                runSpacing: 5,
+                children: keyboardLayout.sublist(19),
+              ),
         widget.enableSpacebar
             ? Column(
                 children: [
@@ -226,9 +243,6 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
         buttonLetter(letter),
       );
     });
-    if (widget.enableBackSpace) {
-      keyboard.add(backSpace());
-    }
     return keyboard;
   }
 }
