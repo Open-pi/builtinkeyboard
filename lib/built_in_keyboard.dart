@@ -48,8 +48,8 @@ class BuiltInKeyboard extends StatefulWidget {
     this.color = Colors.deepOrange,
     this.highlightColor,
     this.splashColor,
-    this.height = 46.0,
-    this.width = 35.0,
+    this.height,
+    this.width,
     this.spacing = 8.0,
     this.enableBackSpace = true,
     this.enableUppercaseAll = false,
@@ -62,8 +62,12 @@ class BuiltInKeyboard extends StatefulWidget {
 }
 
 class BuiltInKeyboardState extends State<BuiltInKeyboard> {
+  double height;
+  double width;
   @override
   Widget build(BuildContext context) {
+    height = MediaQuery.of(context).size.height * 0.057;
+    width = MediaQuery.of(context).size.width * 0.08;
     List<Widget> keyboardLayout = layout(widget.layoutType);
     return Column(
       children: [
@@ -107,8 +111,8 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
 
   Widget buttonLetter(String letter) {
     return Container(
-      height: widget.height,
-      width: widget.width,
+      height: widget.height ?? height,
+      width: widget.width ?? width,
       child: Material(
         type: MaterialType.button,
         color: widget.color,
@@ -141,8 +145,8 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
 
   Widget spaceBar() {
     return Container(
-      height: widget.height,
-      width: widget.width + 160,
+      height: widget.height ?? height,
+      width: (widget.width ?? width) + 160,
       child: Material(
         type: MaterialType.button,
         color: widget.color,
@@ -168,8 +172,8 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
 
   Widget backSpace() {
     return Container(
-      height: widget.height,
-      width: widget.width + 20,
+      height: widget.height ?? height,
+      width: (widget.width ?? width) + 20,
       child: Material(
         type: MaterialType.button,
         color: widget.color,
