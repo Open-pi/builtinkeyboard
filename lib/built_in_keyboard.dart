@@ -66,8 +66,9 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
   double width;
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height * 0.057;
-    width = MediaQuery.of(context).size.width * 0.08;
+    width = screenWidth > 350 ? screenWidth * 0.084 : screenWidth * 0.082;
     List<Widget> keyboardLayout = layout(widget.layoutType);
     return Column(
       children: [
@@ -91,19 +92,16 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
         ),
         widget.enableBackSpace
             ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(width: (widget.width ?? width) + 24.3, height: 0.0),
+                  SizedBox(width: (widget.width ?? width) + 20, height: 0.0),
                   Wrap(
                     alignment: WrapAlignment.center,
                     spacing: 6,
                     runSpacing: 5,
                     children: keyboardLayout.sublist(19),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 4),
-                    child: backSpace(),
-                  ),
+                  backSpace(),
                 ],
               )
             : Wrap(
