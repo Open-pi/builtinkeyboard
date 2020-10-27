@@ -42,8 +42,6 @@ class BuiltInKeyboard extends StatefulWidget {
   final Color highlightColor;
   final Color splashColor;
 
-  final Icon backspaceIcon;
-
   BuiltInKeyboard({
     @required this.controller,
     @required this.layoutType,
@@ -59,7 +57,6 @@ class BuiltInKeyboard extends StatefulWidget {
     this.enableLongPressUppercase = false,
     this.highlightColor,
     this.splashColor,
-    this.backspaceIcon = const Icon(Icons.backspace_outlined, size: 26),
   });
   @override
   BuiltInKeyboardState createState() => BuiltInKeyboardState();
@@ -216,7 +213,11 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
             }
           },
           child: Center(
-            child: widget.backspaceIcon,
+            child: Icon(
+              Icons.backspace,
+              size: widget.letterStyle.fontSize,
+              color: widget.letterStyle.color,
+            ),
           ),
         ),
       ),

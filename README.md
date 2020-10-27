@@ -41,4 +41,3 @@ Option | Required | By default | Description
 **enableLongPressUppercase** | no | false | writes an uppercase when long pressing on the keys
 **highlightColor** | no | - | color when pressed
 **splashColor** | no | - | color when pressed (material style)
-**backspaceIcon** | no | - | adds a backspace icon.
