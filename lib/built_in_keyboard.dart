@@ -33,7 +33,7 @@ class BuiltInKeyboard extends StatefulWidget {
   // Additional functionality for the keys //
 
   // Makes the keyboard uppercase
-  final bool enableUppercaseAll;
+  final bool enableAllUppercase;
 
   // Long press to write uppercase letters
   final bool enableLongPressUppercase;
@@ -55,7 +55,7 @@ class BuiltInKeyboard extends StatefulWidget {
     this.letterStyle = const TextStyle(fontSize: 25, color: Colors.black),
     this.enableSpacebar = false,
     this.enableBackSpace = true,
-    this.enableUppercaseAll = false,
+    this.enableAllUppercase = false,
     this.enableLongPressUppercase = false,
     this.highlightColor,
     this.splashColor,
@@ -145,7 +145,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
                 TextPosition(offset: widget.controller.text.length));
           },
           onLongPress: () {
-            if (widget.enableLongPressUppercase && !widget.enableUppercaseAll) {
+            if (widget.enableLongPressUppercase && !widget.enableAllUppercase) {
               widget.controller.text += letter.toUpperCase();
               widget.controller.selection = TextSelection.fromPosition(
                   TextPosition(offset: widget.controller.text.length));
@@ -226,13 +226,13 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
   List<Widget> layout(String layoutType) {
     List<String> letters = [];
     if (layoutType == 'EN') {
-      if (widget.enableUppercaseAll) {
+      if (widget.enableAllUppercase) {
         letters = 'qwertyuiopasdfghjklzxcvbnm'.toUpperCase().split("");
       } else {
         letters = 'qwertyuiopasdfghjklzxcvbnm'.split("");
       }
     } else if (layoutType == 'FR') {
-      if (widget.enableUppercaseAll) {
+      if (widget.enableAllUppercase) {
         letters = 'azertyuiopqsdfghjklmwxcvbn'.toUpperCase().split("");
       } else {
         letters = 'azertyuiopqsdfghjklmwxcvbn'.split("");
