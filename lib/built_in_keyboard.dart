@@ -23,8 +23,9 @@ class BuiltInKeyboard extends StatefulWidget {
   final TextStyle letterStyle;
 
   // the additional key that can be added to the keyboard
-  final bool enableSpacebar;
+  final bool enableSpaceBar;
   final bool enableBackSpace;
+  final bool enableCapsLock;
 
   // height and width of each key
   final double height;
@@ -33,7 +34,7 @@ class BuiltInKeyboard extends StatefulWidget {
   // Additional functionality for the keys //
 
   // Makes the keyboard uppercase
-  final bool enableAllUppercase;
+  bool enableAllUppercase;
 
   // Long press to write uppercase letters
   final bool enableLongPressUppercase;
@@ -51,8 +52,9 @@ class BuiltInKeyboard extends StatefulWidget {
     this.borderRadius,
     this.color = Colors.deepOrange,
     this.letterStyle = const TextStyle(fontSize: 25, color: Colors.black),
-    this.enableSpacebar = false,
+    this.enableSpaceBar = false,
     this.enableBackSpace = true,
+    this.enableCapsLock = false,
     this.enableAllUppercase = false,
     this.enableLongPressUppercase = false,
     this.highlightColor,
@@ -91,27 +93,28 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
         SizedBox(
           height: widget.spacing,
         ),
-        widget.enableBackSpace
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(width: (widget.width ?? width) + 20, height: 0.0),
-                  Wrap(
-                    alignment: WrapAlignment.center,
-                    spacing: 6,
-                    runSpacing: 5,
-                    children: keyboardLayout.sublist(19),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            widget.enableCapsLock
+                ? capsLock()
+                : SizedBox(
+                    width: (widget.width ?? width) + 20,
                   ),
-                  backSpace(),
-                ],
-              )
-            : Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 6,
-                runSpacing: 5,
-                children: keyboardLayout.sublist(19),
-              ),
-        widget.enableSpacebar
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 6,
+              runSpacing: 5,
+              children: keyboardLayout.sublist(19),
+            ),
+            widget.enableBackSpace
+                ? backSpace()
+                : SizedBox(
+                    width: (widget.width ?? width) + 20,
+                  ),
+          ],
+        ),
+        widget.enableSpaceBar
             ? Column(
                 children: [
                   SizedBox(
@@ -178,7 +181,10 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           child: Center(
             child: Text(
               '_________',
-              style: widget.letterStyle,
+              style: TextStyle(
+                fontSize: widget.letterStyle.fontSize,
+                color: widget.letterStyle.color,
+              ),
             ),
           ),
         ),
@@ -215,6 +221,34 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           child: Center(
             child: Icon(
               Icons.backspace,
+              size: widget.letterStyle.fontSize,
+              color: widget.letterStyle.color,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget capsLock() {
+    return Container(
+      height: widget.height ?? height,
+      width: (widget.width ?? width) + 20,
+      child: Material(
+        type: MaterialType.button,
+        color: widget.color,
+        borderRadius: widget.borderRadius,
+        child: InkWell(
+          highlightColor: widget.highlightColor,
+          splashColor: widget.splashColor,
+          onTap: () {
+            setState(() {
+              widget.enableAllUppercase = !widget.enableAllUppercase;
+            });
+          },
+          child: Center(
+            child: Icon(
+              Icons.keyboard_capslock,
               size: widget.letterStyle.fontSize,
               color: widget.letterStyle.color,
             ),

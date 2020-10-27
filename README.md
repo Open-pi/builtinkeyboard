@@ -37,6 +37,7 @@ Option | Required | By default | Description
 **color** | no | deepOrange | color of the keys (keyboard color)
 **enableSpacebar** | no | false | adds a spacebar
 **enableBackSpace** | no | true | adds a backspace button
+**enableCapsLock** | no | false | adds a Caps Lock button
 **enableAllUppercase** | no | false | makes the keyboard uppercase
 **enableLongPressUppercase** | no | false | writes an uppercase when long pressing on the keys
 **highlightColor** | no | - | color when pressed
