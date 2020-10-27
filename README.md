@@ -29,16 +29,16 @@ Option | Required | By default | Description
 --- | --- | --- | ---
 **controller** | yes | - | `TextEditingController`
 **layoutType** | yes | - | the layout of the keyboard
-**letterStyle** | no | fontSize: 25, color: black | `TextStyle` of the letters
-**borderRadius** | no | - | the radius of the keys
-**color** | no | deepOrange | color of the keys (keyboard color)
-**highlightColor** | no | - | color when pressed
-**splashColor** | no | - | color when pressed (material style)
 **height** | no | - | height of keys
 **width** | no | - | width of keys
-**spacing** | no | - | the spacing between each row
-**enableBackSpace** | no | - | adds a backspace button.
-**enableUppercaseAll** | no | - | makes the keyboard uppercase
-**enableLongPressUppercase** | no | - | writes an uppercase when long pressing on the keys
-**enableSpacebar** | no | - | adds a spacebar
+**spacing** | no | 8.0 | the spacing between each row
+**borderRadius** | no | - | the radius of the keys
+**letterStyle** | no | fontSize: 25, color: black | `TextStyle` of the letters
+**color** | no | deepOrange | color of the keys (keyboard color)
+**enableSpacebar** | no | false | adds a spacebar
+**enableBackSpace** | no | true | adds a backspace button
+**enableAllUppercase** | no | false | makes the keyboard uppercase
+**enableLongPressUppercase** | no | false | writes an uppercase when long pressing on the keys
+**highlightColor** | no | - | color when pressed
+**splashColor** | no | - | color when pressed (material style)
 **backspaceIcon** | no | - | adds a backspace icon.

@@ -7,8 +7,11 @@ class BuiltInKeyboard extends StatefulWidget {
   // layoutType of the keyboard
   final String layoutType;
 
-  // TextStyle of the letters in the keys (fontsize, fontface)
-  final TextStyle letterStyle;
+  // The controller connected to the InputField
+  final TextEditingController controller;
+
+  // Vertical spacing between key rows
+  final double spacing;
 
   // Border radius of the keys
   final BorderRadius borderRadius;
@@ -16,45 +19,46 @@ class BuiltInKeyboard extends StatefulWidget {
   // Color of the keys
   final Color color;
 
-  // The color displayed when the key is pressed
-  final Color highlightColor;
-  final Color splashColor;
-
-  // The controller connected to the InputField
-  final TextEditingController controller;
-
-  // height and width of each key
-  final double height;
-  final double width;
-  final double spacing;
+  // TextStyle of the letters in the keys (fontsize, fontface)
+  final TextStyle letterStyle;
 
   // the additional key that can be added to the keyboard
   final bool enableSpacebar;
   final bool enableBackSpace;
 
-  // Additional functionality for the keys
+  // height and width of each key
+  final double height;
+  final double width;
+
+  // Additional functionality for the keys //
+
   // Makes the keyboard uppercase
   final bool enableUppercaseAll;
 
   // Long press to write uppercase letters
   final bool enableLongPressUppercase;
+
+  // The color displayed when the key is pressed
+  final Color highlightColor;
+  final Color splashColor;
+
   final Icon backspaceIcon;
 
   BuiltInKeyboard({
     @required this.controller,
     @required this.layoutType,
-    this.letterStyle = const TextStyle(fontSize: 25, color: Colors.black),
-    this.borderRadius,
-    this.color = Colors.deepOrange,
-    this.highlightColor,
-    this.splashColor,
     this.height,
     this.width,
     this.spacing = 8.0,
+    this.borderRadius,
+    this.color = Colors.deepOrange,
+    this.letterStyle = const TextStyle(fontSize: 25, color: Colors.black),
+    this.enableSpacebar = false,
     this.enableBackSpace = true,
     this.enableUppercaseAll = false,
     this.enableLongPressUppercase = false,
-    this.enableSpacebar = false,
+    this.highlightColor,
+    this.splashColor,
     this.backspaceIcon = const Icon(Icons.backspace_outlined, size: 26),
   });
   @override
