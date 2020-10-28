@@ -2,6 +2,10 @@
 
 A flutter package to add built-in keyboard instead of system keyboards. This implementation relies on a textInputField and interacts with it through a `TextEditingController`. 
 
+<p align="center">
+  <img src="BIKST.png">
+</p>
+
 ## Usage
 First of all, add the package to your dependencies and run `flutter pub get`.
 ```yaml
