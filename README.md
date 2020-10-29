@@ -3,7 +3,7 @@
 A flutter package to add built-in keyboard instead of system keyboards. This implementation relies on a textInputField and interacts with it through a `TextEditingController`. 
 
 <p align="center">
-  <img src="BIKST.png">
+  <img src="BIKST.png" width="55%">
 </p>
 
 ## Usage
