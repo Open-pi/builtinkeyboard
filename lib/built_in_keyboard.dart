@@ -71,7 +71,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height * 0.057;
+    height = MediaQuery.of(context).size.height * 0.070;
     width = screenWidth > 350 ? screenWidth * 0.084 : screenWidth * 0.082;
     List<Widget> keyboardLayout = layout(widget.layoutType);
     return Column(
