@@ -1,7 +1,6 @@
 name: built_in_keyboard
-description: A on board keyboard for your flutter App.
+description: A Simple package for dispaying a built in keyboard that adapts with most screensizes.
 version: 0.0.1
-author: Open Segmentation Systems
 homepage: https://github.com/Open-Segmentation-Systems/BuiltInKeyboard
 
 environment:

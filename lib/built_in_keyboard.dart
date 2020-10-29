@@ -129,6 +129,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
     );
   }
 
+  // Letter button widget
   Widget buttonLetter(String letter) {
     return Container(
       height: widget.height ?? height,
@@ -163,6 +164,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
     );
   }
 
+  // Spacebar button widget
   Widget spaceBar() {
     return Container(
       height: widget.height ?? height,
@@ -193,6 +195,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
     );
   }
 
+  // Backspace button widget
   Widget backSpace() {
     return Container(
       height: widget.height ?? height,
@@ -231,6 +234,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
     );
   }
 
+  // Capslock button widget
   Widget capsLock() {
     return Container(
       height: widget.height ?? height,
@@ -259,6 +263,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
     );
   }
 
+  // Keyboard layout list
   List<Widget> layout(String layoutType) {
     List<String> letters = [];
     if (layoutType == 'EN') {
