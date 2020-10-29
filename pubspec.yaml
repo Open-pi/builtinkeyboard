@@ -1,6 +1,6 @@
 name: built_in_keyboard
 description: A Simple package for dispaying a built in keyboard that adapts with most screensizes.
-version: 0.0.2
+version: 0.1.0
 homepage: https://github.com/Open-Segmentation-Systems/BuiltInKeyboard
 
 environment:
