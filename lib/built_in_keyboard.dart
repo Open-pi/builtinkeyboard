@@ -2,6 +2,7 @@ library built_in_keyboard;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class BuiltInKeyboard extends StatefulWidget {
   // layoutType of the keyboard
@@ -71,7 +72,8 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height * 0.070;
+    double screenHeight = MediaQuery.of(context).size.height;
+    height = screenHeight > 800 ? screenHeight * 0.059 : screenHeight * 0.07;
     width = screenWidth > 350 ? screenWidth * 0.084 : screenWidth * 0.082;
     List<Widget> keyboardLayout = layout(widget.layoutType);
     return Column(
@@ -142,6 +144,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           highlightColor: widget.highlightColor,
           splashColor: widget.splashColor,
           onTap: () {
+            HapticFeedback.heavyImpact();
             widget.controller.text += letter;
             widget.controller.selection = TextSelection.fromPosition(
                 TextPosition(offset: widget.controller.text.length));
@@ -177,6 +180,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           highlightColor: widget.highlightColor,
           splashColor: widget.splashColor,
           onTap: () {
+            HapticFeedback.heavyImpact();
             widget.controller.text += ' ';
             widget.controller.selection = TextSelection.fromPosition(
                 TextPosition(offset: widget.controller.text.length));
@@ -208,6 +212,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           highlightColor: widget.highlightColor,
           splashColor: widget.splashColor,
           onTap: () {
+            HapticFeedback.heavyImpact();
             if (widget.controller.text.isNotEmpty) {
               widget.controller.text = widget.controller.text
                   .substring(0, widget.controller.text.length - 1);
@@ -247,6 +252,7 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
           highlightColor: widget.highlightColor,
           splashColor: widget.splashColor,
           onTap: () {
+            HapticFeedback.heavyImpact();
             setState(() {
               capsLockUppercase = !capsLockUppercase;
             });
