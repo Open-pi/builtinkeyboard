@@ -133,33 +133,36 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
 
   // Letter button widget
   Widget buttonLetter(String letter) {
-    return Container(
-      height: widget.height ?? height,
-      width: widget.width ?? width,
-      child: Material(
-        type: MaterialType.button,
-        color: widget.color,
-        borderRadius: widget.borderRadius,
-        child: InkWell(
-          highlightColor: widget.highlightColor,
-          splashColor: widget.splashColor,
-          onTap: () {
-            HapticFeedback.heavyImpact();
-            widget.controller.text += letter;
-            widget.controller.selection = TextSelection.fromPosition(
-                TextPosition(offset: widget.controller.text.length));
-          },
-          onLongPress: () {
-            if (widget.enableLongPressUppercase && !widget.enableAllUppercase) {
-              widget.controller.text += letter.toUpperCase();
+    return ClipRRect(
+      borderRadius: widget.borderRadius ?? BorderRadius.circular(0),
+      child: Container(
+        height: widget.height ?? height,
+        width: widget.width ?? width,
+        child: Material(
+          type: MaterialType.button,
+          color: widget.color,
+          child: InkWell(
+            highlightColor: widget.highlightColor,
+            splashColor: widget.splashColor,
+            onTap: () {
+              HapticFeedback.heavyImpact();
+              widget.controller.text += letter;
               widget.controller.selection = TextSelection.fromPosition(
                   TextPosition(offset: widget.controller.text.length));
-            }
-          },
-          child: Center(
-            child: Text(
-              letter,
-              style: widget.letterStyle,
+            },
+            onLongPress: () {
+              if (widget.enableLongPressUppercase &&
+                  !widget.enableAllUppercase) {
+                widget.controller.text += letter.toUpperCase();
+                widget.controller.selection = TextSelection.fromPosition(
+                    TextPosition(offset: widget.controller.text.length));
+              }
+            },
+            child: Center(
+              child: Text(
+                letter,
+                style: widget.letterStyle,
+              ),
             ),
           ),
         ),
@@ -169,28 +172,30 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
 
   // Spacebar button widget
   Widget spaceBar() {
-    return Container(
-      height: widget.height ?? height,
-      width: (widget.width ?? width) + 160,
-      child: Material(
-        type: MaterialType.button,
-        color: widget.color,
-        borderRadius: widget.borderRadius,
-        child: InkWell(
-          highlightColor: widget.highlightColor,
-          splashColor: widget.splashColor,
-          onTap: () {
-            HapticFeedback.heavyImpact();
-            widget.controller.text += ' ';
-            widget.controller.selection = TextSelection.fromPosition(
-                TextPosition(offset: widget.controller.text.length));
-          },
-          child: Center(
-            child: Text(
-              '_________',
-              style: TextStyle(
-                fontSize: widget.letterStyle.fontSize,
-                color: widget.letterStyle.color,
+    return ClipRRect(
+      borderRadius: widget.borderRadius ?? BorderRadius.circular(0),
+      child: Container(
+        height: widget.height ?? height,
+        width: (widget.width ?? width) + 160,
+        child: Material(
+          type: MaterialType.button,
+          color: widget.color,
+          child: InkWell(
+            highlightColor: widget.highlightColor,
+            splashColor: widget.splashColor,
+            onTap: () {
+              HapticFeedback.heavyImpact();
+              widget.controller.text += ' ';
+              widget.controller.selection = TextSelection.fromPosition(
+                  TextPosition(offset: widget.controller.text.length));
+            },
+            child: Center(
+              child: Text(
+                '_________',
+                style: TextStyle(
+                  fontSize: widget.letterStyle.fontSize,
+                  color: widget.letterStyle.color,
+                ),
               ),
             ),
           ),
@@ -201,37 +206,39 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
 
   // Backspace button widget
   Widget backSpace() {
-    return Container(
-      height: widget.height ?? height,
-      width: (widget.width ?? width) + 20,
-      child: Material(
-        type: MaterialType.button,
-        color: widget.color,
-        borderRadius: widget.borderRadius,
-        child: InkWell(
-          highlightColor: widget.highlightColor,
-          splashColor: widget.splashColor,
-          onTap: () {
-            HapticFeedback.heavyImpact();
-            if (widget.controller.text.isNotEmpty) {
-              widget.controller.text = widget.controller.text
-                  .substring(0, widget.controller.text.length - 1);
-              widget.controller.selection = TextSelection.fromPosition(
-                  TextPosition(offset: widget.controller.text.length));
-            }
-          },
-          onLongPress: () {
-            if (widget.controller.text.isNotEmpty) {
-              widget.controller.text = '';
-              widget.controller.selection = TextSelection.fromPosition(
-                  TextPosition(offset: widget.controller.text.length));
-            }
-          },
-          child: Center(
-            child: Icon(
-              Icons.backspace,
-              size: widget.letterStyle.fontSize,
-              color: widget.letterStyle.color,
+    return ClipRRect(
+      borderRadius: widget.borderRadius ?? BorderRadius.circular(0),
+      child: Container(
+        height: widget.height ?? height,
+        width: (widget.width ?? width) + 20,
+        child: Material(
+          type: MaterialType.button,
+          color: widget.color,
+          child: InkWell(
+            highlightColor: widget.highlightColor,
+            splashColor: widget.splashColor,
+            onTap: () {
+              HapticFeedback.heavyImpact();
+              if (widget.controller.text.isNotEmpty) {
+                widget.controller.text = widget.controller.text
+                    .substring(0, widget.controller.text.length - 1);
+                widget.controller.selection = TextSelection.fromPosition(
+                    TextPosition(offset: widget.controller.text.length));
+              }
+            },
+            onLongPress: () {
+              if (widget.controller.text.isNotEmpty) {
+                widget.controller.text = '';
+                widget.controller.selection = TextSelection.fromPosition(
+                    TextPosition(offset: widget.controller.text.length));
+              }
+            },
+            child: Center(
+              child: Icon(
+                Icons.backspace,
+                size: widget.letterStyle.fontSize,
+                color: widget.letterStyle.color,
+              ),
             ),
           ),
         ),
@@ -241,27 +248,29 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
 
   // Capslock button widget
   Widget capsLock() {
-    return Container(
-      height: widget.height ?? height,
-      width: (widget.width ?? width) + 20,
-      child: Material(
-        type: MaterialType.button,
-        color: widget.color,
-        borderRadius: widget.borderRadius,
-        child: InkWell(
-          highlightColor: widget.highlightColor,
-          splashColor: widget.splashColor,
-          onTap: () {
-            HapticFeedback.heavyImpact();
-            setState(() {
-              capsLockUppercase = !capsLockUppercase;
-            });
-          },
-          child: Center(
-            child: Icon(
-              Icons.keyboard_capslock,
-              size: widget.letterStyle.fontSize,
-              color: widget.letterStyle.color,
+    return ClipRRect(
+      borderRadius: widget.borderRadius ?? BorderRadius.circular(0),
+      child: Container(
+        height: widget.height ?? height,
+        width: (widget.width ?? width) + 20,
+        child: Material(
+          type: MaterialType.button,
+          color: widget.color,
+          child: InkWell(
+            highlightColor: widget.highlightColor,
+            splashColor: widget.splashColor,
+            onTap: () {
+              HapticFeedback.heavyImpact();
+              setState(() {
+                capsLockUppercase = !capsLockUppercase;
+              });
+            },
+            child: Center(
+              child: Icon(
+                Icons.keyboard_capslock,
+                size: widget.letterStyle.fontSize,
+                color: widget.letterStyle.color,
+              ),
             ),
           ),
         ),
