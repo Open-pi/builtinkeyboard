@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class BuiltInKeyboard extends StatefulWidget {
+  // customize user letters
+  final List<String>? letters;
+
   // layoutType of the keyboard
   final String layoutType;
 
@@ -60,6 +63,7 @@ class BuiltInKeyboard extends StatefulWidget {
     this.enableLongPressUppercase = false,
     this.highlightColor,
     this.splashColor,
+    this.letters,
   });
   @override
   BuiltInKeyboardState createState() => BuiltInKeyboardState();
@@ -279,8 +283,8 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
   }
 
   // Keyboard layout list
-  List<Widget> layout(String layoutType) {
-    List<String> letters = [];
+  List<Widget> layout(String layoutType, {List<String>? letters}) {
+    letters ??= [];
     if (layoutType == 'EN') {
       if (widget.enableAllUppercase || capsLockUppercase) {
         letters = 'qwertyuiopasdfghjklzxcvbnm'.toUpperCase().split("");
@@ -293,6 +297,10 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
       } else {
         letters = 'azertyuiopqsdfghjklmwxcvbn'.split("");
       }
+    }
+    // PC: personalize and customize
+    else if (layoutType == 'PC') {
+      letters = letters;
     }
 
     List<Widget> keyboard = [];
