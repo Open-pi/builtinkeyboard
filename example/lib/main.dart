@@ -1,14 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:built_in_keyboard/built_in_keyboard.dart';
 
-void main() => runApp(MaterialApp(home: Home()));
-
-class Home extends StatefulWidget {
-  @override
-  HomeState createState() => new HomeState();
+void main() {
+  runApp(const MyApp());
 }
 
-class HomeState extends State<Home> {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Built In Keyboard Test',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Built In Keyboard Test Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
   @override
   Widget build(BuildContext context) {
     TextEditingController textController = new TextEditingController();
