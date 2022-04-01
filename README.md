@@ -56,21 +56,21 @@ Option | Required | By default | Description
 To add a new language or a keyboad layout to the package you only need to modify the language.dart file. The following steps will show you how to do that.
 
 1. Add the short name form of your new language to the `Language` enum.
-```
+```dart
 enum Language {
   EN,
   FR,
   DE,
-  <your new language>,
+  <your language>,
 }
 ```
 2. Add your layout name to the `Layout` enum if not present.
-```
+```dart
 enum Layout {
   QWERTY,
   QWERTZ,
   AZERTY,
-  <new layout>,
+  <your layout>,
 }
 ```
 3. Create a new map variable called `<language name>Config`. The keys of this map will be the layouts from the `Layout` enum (e.g: Layout.QWERTY), and the values will be maps with types `<String, String>` that contain the core configuration. These latter maps must contain four fields o:
@@ -82,24 +82,24 @@ enum Layout {
     (The bottom/last row will just take the remaining keys).
 
     example:
-    ```
+    ```dart
     var frenchConfig = {
       Layout.QWERTY: <String, String>{
         'layout': 'qwertyuiopasdfghjklzxcvbnm',
-        'horizontalSpacing': '6.0',
-        'topLength': '10',
-        'middleLength': '9',
+        'horizontalSpacing': '6.0', // space between keys
+        'topLength': '10', // number of keys
+        'middleLength': '9', // number of keys
       },
       Layout.AZERTY: <String, String>{
         'layout': 'azertyuiopqsdfghjklmwxcvbn',
-        'horizontalSpacing': '6.0',
-        'topLength': '10',
-        'middleLength': '9',
+        'horizontalSpacing': '6.0', // space between keys
+        'topLength': '10', // number of keys
+        'middleLength': '9', // number of keys
       },
     };
     ```
 4. And finally your new language config map to the `languageConfig` map, with the key as the short language name from the `Language` enum.
-```
+```dart
 var languageConfig = {
   Language.EN: englishConfig,
   Language.FR: frenchConfig,
