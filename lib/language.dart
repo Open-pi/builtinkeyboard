@@ -3,6 +3,7 @@ enum Language {
   FR,
   DE,
 }
+
 enum Layout {
   QWERTY,
   QWERTZ,
