@@ -1,15 +1,22 @@
 library built_in_keyboard;
 
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'language.dart';
 
 class BuiltInKeyboard extends StatefulWidget {
   // customize user letters
   final List<String>? customLetters;
 
-  // layoutType of the keyboard
-  final String? layoutType;
+  // Language of the keyboard
+  final Language language;
+
+  // layout of the keyboard
+  final Layout layout;
 
   // The controller connected to the InputField
   final TextEditingController? controller;
@@ -49,7 +56,8 @@ class BuiltInKeyboard extends StatefulWidget {
 
   BuiltInKeyboard({
     @required this.controller,
-    @required this.layoutType,
+    this.language = Language.EN,
+    this.layout = Layout.QWERTY,
     this.height,
     this.width,
     this.spacing = 8.0,
@@ -80,22 +88,36 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
     height = screenHeight > 800 ? screenHeight * 0.059 : screenHeight * 0.07;
     width = screenWidth > 350 ? screenWidth * 0.084 : screenWidth * 0.082;
     List<Widget> keyboardLayout = layout();
+    double hspacing;
+    int topLen, midLen;
+    try {
+      hspacing = double.parse(languageConfig[widget.language]![widget.layout]![
+          'horizontalSpacing']!);
+      topLen = int.parse(
+          languageConfig[widget.language]![widget.layout]!['topLength']!);
+      midLen = int.parse(
+          languageConfig[widget.language]![widget.layout]!['middleLength']!);
+    } catch (_CastError) {
+      printError(
+          "Uknown language or layout was used, or Incorrect combination of language-layout");
+      exit(0);
+    }
     return Column(
       children: [
         Wrap(
           alignment: WrapAlignment.center,
-          spacing: 6,
+          spacing: hspacing,
           runSpacing: 5,
-          children: keyboardLayout.sublist(0, 10),
+          children: keyboardLayout.sublist(0, topLen),
         ),
         SizedBox(
           height: widget.spacing,
         ),
         Wrap(
           alignment: WrapAlignment.center,
-          spacing: 6,
+          spacing: hspacing,
           runSpacing: 5,
-          children: keyboardLayout.sublist(10, 19),
+          children: keyboardLayout.sublist(topLen, topLen + midLen),
         ),
         SizedBox(
           height: widget.spacing,
@@ -110,9 +132,9 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
                   ),
             Wrap(
               alignment: WrapAlignment.center,
-              spacing: 6,
+              spacing: hspacing,
               runSpacing: 5,
-              children: keyboardLayout.sublist(19),
+              children: keyboardLayout.sublist(topLen + midLen),
             ),
             widget.enableBackSpace
                 ? backSpace()
@@ -284,19 +306,14 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
 
   // Keyboard layout list
   List<Widget> layout() {
-    List<String>? letters = [];
-    if (widget.layoutType == 'EN') {
-      if (widget.enableAllUppercase || capsLockUppercase) {
-        letters = 'qwertyuiopasdfghjklzxcvbnm'.toUpperCase().split("");
-      } else {
-        letters = 'qwertyuiopasdfghjklzxcvbnm'.split("");
-      }
-    } else if (widget.layoutType == 'FR') {
-      if (widget.enableAllUppercase || capsLockUppercase) {
-        letters = 'azertyuiopqsdfghjklmwxcvbn'.toUpperCase().split("");
-      } else {
-        letters = 'azertyuiopqsdfghjklmwxcvbn'.split("");
-      }
+    List<String> letters = [];
+    try {
+      letters =
+          languageConfig[widget.language]![widget.layout]!['layout']!.split("");
+    } catch (_CastError) {
+      printError(
+          "Uknown language or layout was used, or Incorrect combination of language-layout");
+      exit(0);
     }
 
     List<Widget> keyboard = [];
@@ -307,4 +324,8 @@ class BuiltInKeyboardState extends State<BuiltInKeyboard> {
     });
     return keyboard;
   }
+}
+
+void printError(String text) {
+  print('\x1B[31m$text\x1B[0m');
 }
