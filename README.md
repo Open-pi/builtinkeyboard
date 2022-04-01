@@ -22,7 +22,8 @@ Here are some attributes that you could change. keep in mind that the controller
 ```dart
 BuiltInKeyboard(
   controller: this.textController, // required
-  layoutType: 'EN', // required, Only QWERTY and AZERTY are currently available
+  language: Language.DE, // optional
+  layout: Layout.QWERTZ, // optional, BUT MUST be checked if you modify the language!
   enableSpaceBar: true, // optional, add a spacebar
   enableBackSpace: true, // optional, add a backspace button
   enableCapsLock: true, // optional, add a Caps Lock button
@@ -34,7 +35,8 @@ BuiltInKeyboard(
 Option | Required | By default | Description
 --- | --- | --- | ---
 **controller** | yes | - | `TextEditingController`
-**layoutType** | yes | - | the layout of the keyboard
+**language** | no | Language.EN | the language of the keyboard
+**layout** | no | Layout.QWERTY | the layout of the keyboard
 **height** | no | - | height of keys
 **width** | no | - | width of keys
 **spacing** | no | 8.0 | the spacing between each row
@@ -48,3 +50,64 @@ Option | Required | By default | Description
 **enableLongPressUppercase** | no | false | writes an uppercase when long pressing on the keys
 **highlightColor** | no | - | color when pressed
 **splashColor** | no | - | color when pressed (material style)
+
+## Contribution
+### Languages
+To add a new language or a keyboad layout to the package you only need to modify the language.dart file. The following steps will show you how to do that.
+
+1. Add the short name form of your new language to the `Language` enum.
+```
+enum Language {
+  EN,
+  FR,
+  DE,
+  <your new language>,
+}
+```
+2. Add your layout name to the `Layout` enum if not present.
+```
+enum Layout {
+  QWERTY,
+  QWERTZ,
+  AZERTY,
+  <new layout>,
+}
+```
+3. Create a new map variable called `<language name>Config`. The keys of this map will be the layouts from the `Layout` enum (e.g: Layout.QWERTY), and the values will be maps with types `<String, String>` that contain the core configuration. These latter maps must contain four fields o:
+   1. `layout`: The full text layout of the keyboard.
+   2. `horizontalSpacing`: A floating number which will represent the spaceing between each key. 
+   3. `topLength`: The lenght of the top/first row of keys. In other words, the number of keys to display in the top row.
+   4. `middleLength`: The number of keys in the middle row.
+
+    (The bottom/last row will just take the remaining keys).
+
+    example:
+    ```
+    var frenchConfig = {
+      Layout.QWERTY: <String, String>{
+        'layout': 'qwertyuiopasdfghjklzxcvbnm',
+        'horizontalSpacing': '6.0',
+        'topLength': '10',
+        'middleLength': '9',
+      },
+      Layout.AZERTY: <String, String>{
+        'layout': 'azertyuiopqsdfghjklmwxcvbn',
+        'horizontalSpacing': '6.0',
+        'topLength': '10',
+        'middleLength': '9',
+      },
+    };
+    ```
+4. And finally your new language config map to the `languageConfig` map, with the key as the short language name from the `Language` enum.
+```
+var languageConfig = {
+  Language.EN: englishConfig,
+  Language.FR: frenchConfig,
+  Language.DE: germanConfig,
+  Language.<short language name>: <language name>Config,
+};
+```
+
+Feel free to also modify or add new things to existing languges.
+
+
