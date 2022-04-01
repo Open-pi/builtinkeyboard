@@ -12,20 +12,22 @@ First of all, add the package to your dependencies and run `flutter pub get`.
 dependencies:
   built_in_keyboard:
     git:
-      url: https://github.com/Open-Segmentation-Systems/BuiltInKeyboard.git
+      url: https://github.com/Open-pi/builtinkeyboard.git
       ref: main
 ```
 
-With the `builtInKeyboard` widget, you can easily change the layout of the keyboard, the look and feel of the keys, etc.
+With the `BuiltInKeyboard` widget, you can easily change the layout of the keyboard, the look and feel of the keys, etc.
 
 Here are some attributes that you could change. keep in mind that the controller is required to make the keyboard work correctly.
 ```dart
 BuiltInKeyboard(
   controller: this.textController, // required
-  layoutType: 'EN', // Only QWERTY and AZERTY are currently available
-  enableUppercaseAll: true, // makes the keys uppercase
-  borderRadius: BorderRadius.circular(8.0), // changes the border radius of the key
-  letterStyle: TextStyle(fontSize: 25, color: Colors.black) // styles the text inside a key
+  layoutType: 'EN', // required, Only QWERTY and AZERTY are currently available
+  enableSpaceBar: true, // optional, add a spacebar
+  enableBackSpace: true, // optional, add a backspace button
+  enableCapsLock: true, // optional, add a Caps Lock button
+  borderRadius: BorderRadius.circular(8.0), // changes the border radius of the keys
+  letterStyle: TextStyle(fontSize: 25, color: Colors.black) // styles the text inside the keys
 )
 ```
 ### Additional options and flags
