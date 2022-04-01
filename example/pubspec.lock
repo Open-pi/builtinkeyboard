@@ -20,7 +20,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "297e03976ffa5ae54aef48643e11c07b2229aa00"
+      resolved-ref: "407b22534f63603e023ab60c02c2e747dd91fcc4"
       url: "https://github.com/Open-pi/builtinkeyboard.git"
     source: git
     version: "0.2.0"
