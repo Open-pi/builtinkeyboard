@@ -1,3 +1,4 @@
+import 'package:built_in_keyboard/language.dart';
 import 'package:flutter/material.dart';
 import 'package:built_in_keyboard/built_in_keyboard.dart';
 
@@ -84,7 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
             padding: EdgeInsets.only(bottom: 3),
             child: BuiltInKeyboard(
-              layoutType: 'EN',
+              language: Language.EN,
+              layout: Layout.QWERTY,
               borderRadius: BorderRadius.circular(8),
               controller: textController,
               enableLongPressUppercase: true,

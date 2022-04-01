@@ -24,9 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   built_in_keyboard:
-    git:
-      url: https://github.com/Open-pi/builtinkeyboard.git
-      ref: main
+    path: ../
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -18,11 +18,9 @@ packages:
   built_in_keyboard:
     dependency: "direct main"
     description:
-      path: "."
-      ref: main
-      resolved-ref: "407b22534f63603e023ab60c02c2e747dd91fcc4"
-      url: "https://github.com/Open-pi/builtinkeyboard.git"
-    source: git
+      path: ".."
+      relative: true
+    source: path
     version: "0.2.0"
   characters:
     dependency: transitive
