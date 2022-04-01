@@ -9,9 +9,6 @@ import 'package:flutter/services.dart';
 import 'language.dart';
 
 class BuiltInKeyboard extends StatefulWidget {
-  // customize user letters
-  final List<String>? customLetters;
-
   // Language of the keyboard
   final Language language;
 
@@ -71,7 +68,6 @@ class BuiltInKeyboard extends StatefulWidget {
     this.enableLongPressUppercase = false,
     this.highlightColor,
     this.splashColor,
-    this.customLetters,
   });
   @override
   BuiltInKeyboardState createState() => BuiltInKeyboardState();
