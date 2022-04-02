@@ -1,3 +1,8 @@
+## [0.2.0]
+
+* Add null safety support.
+* Add multi-languages support.
+
 ## [0.1.0]
 
 * First 0.1 release.
