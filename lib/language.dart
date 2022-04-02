@@ -2,18 +2,21 @@ enum Language {
   EN,
   FR,
   DE,
+  AR,
 }
 
 enum Layout {
   QWERTY,
   QWERTZ,
   AZERTY,
+  ARABIC,
 }
 
 var languageConfig = {
   Language.EN: englishConfig,
   Language.FR: frenchConfig,
   Language.DE: germanConfig,
+  Language.AR: arabicConfig,
 };
 
 // Languages Configurations
@@ -58,7 +61,16 @@ var germanConfig = {
   Layout.QWERTZ: <String, String>{
     'layout': 'qwertzuiopüasdfghjklöäyxcvbnmß',
     'horizontalSpacing': '2.5',
-    'topLength': '10',
+    'topLength': '11',
     'middleLength': '11',
+  },
+};
+
+var arabicConfig = {
+  Layout.ARABIC: <String, String>{
+    'layout': 'ثةورزدذطظكمنتالبيسشجحخهعغفقصض',
+    'horizontalSpacing': '2.8',
+    'topLength': '11',
+    'middleLength': '10',
   },
 };
