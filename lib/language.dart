@@ -3,6 +3,7 @@ enum Language {
   FR,
   DE,
   AR,
+  TR,
 }
 
 enum Layout {
@@ -10,6 +11,10 @@ enum Layout {
   QWERTZ,
   AZERTY,
   ARABIC,
+  FTURKISH,
+
+  /// Layout which includes only turkish alphabet letters, for games and educational content
+  PURETURKISH,
 }
 
 var languageConfig = {
@@ -17,6 +22,7 @@ var languageConfig = {
   Language.FR: frenchConfig,
   Language.DE: germanConfig,
   Language.AR: arabicConfig,
+  Language.TR: turkishConfig,
 };
 
 // Languages Configurations
@@ -72,5 +78,26 @@ var arabicConfig = {
     'horizontalSpacing': '2.8',
     'topLength': '11',
     'middleLength': '10',
+  },
+};
+
+var turkishConfig = {
+  Layout.QWERTY: <String, String>{
+    'layout': 'qwertyuıopğüasdfghjklşizxcvbnmöç',
+    'horizontalSpacing': '2.0',
+    'topLength': '12',
+    'middleLength': '11',
+  },
+  Layout.FTURKISH: <String, String>{
+    'layout': 'fgğıodrnhpqwuieaütkmlyşxjövcçzsb',
+    'horizontalSpacing': '2.0',
+    'topLength': '12',
+    'middleLength': '12',
+  },
+  Layout.PURETURKISH: <String, String>{
+    'layout': 'ertyuıopğüasdfghjklşizcvbnmöç',
+    'horizontalSpacing': '2.0',
+    'topLength': '10',
+    'middleLength': '11',
   },
 };
